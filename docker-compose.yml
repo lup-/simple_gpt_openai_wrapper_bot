@@ -1,0 +1,16 @@
+version: "3.3"
+services:
+  bot:
+    restart: ${RESTART}
+    build:
+      context: "."
+      dockerfile: "./docker/Dockerfile_bot"
+    command: python bot.py
+    volumes:
+      - ./bot:/content/app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OPENAI_TOKEN=${OPENAI_TOKEN}
+      - TELEGRAM_API_ID=${TELEGRAM_API_ID}
+      - TELEGRAM_API_HASH=${TELEGRAM_API_HASH}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
